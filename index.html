@@ -27,6 +27,14 @@
     .card .btn { display: inline-block; margin-top: 15px; padding: 10px 20px; background-color: #2f2a26; color: #fff; text-decoration: none; border-radius: 5px; }
     footer { background-color: #2f2a26; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
     @media (max-width: 768px) { .filters { flex-direction: column; align-items: center; } }
+
+    /* Animated Candle Styles */
+    .candle-container { display: inline-block; position: relative; margin-top: 20px; }
+    .candle { width: 40px; height: 100px; background: #f5e1c1; border-radius: 5px; position: relative; }
+    .flame { width: 20px; height: 20px; background: radial-gradient(circle, #fffa70 0%, #ff6e40 60%, #ff3d00 100%); border-radius: 50%; position: absolute; top: -25px; left: 50%; transform: translateX(-50%); animation: flicker 1s infinite alternate; opacity: 1; }
+    @keyframes flicker { 0% { transform: translateX(-50%) scale(1); opacity: 1; } 50% { transform: translateX(-52%) scale(1.1); opacity: 0.8; } 100% { transform: translateX(-48%) scale(0.9); opacity: 1; } }
+    .smoke { position: absolute; top: -40px; left: 50%; width: 10px; height: 40px; background: radial-gradient(circle, rgba(200,200,200,0.6) 0%, transparent 70%); transform: translateX(-50%); border-radius: 50%; animation: smokeRise 3s infinite; }
+    @keyframes smokeRise { 0% { transform: translateX(-50%) translateY(0) scale(1); opacity: 0.7; } 50% { transform: translateX(-52%) translateY(-30px) scale(1.2); opacity: 0.5; } 100% { transform: translateX(-48%) translateY(-60px) scale(1.5); opacity: 0; } }
   </style>
 </head>
 <body>
@@ -48,6 +56,18 @@
   <a href="#shop">Shop Now</a>
 </div>
 
+<!-- Animated Candle Section -->
+<section id="animated-candle" style="text-align:center; padding:60px 20px;">
+  <h2>Magic Candle</h2>
+  <div class="candle-container">
+    <div class="candle">
+      <div class="flame"></div>
+      <div class="smoke"></div>
+    </div>
+  </div>
+  <button id="toggleCandle" class="btn">Turn Off</button>
+</section>
+
 <section id="shop">
   <h2>All Candles</h2>
   <div class="filters">
@@ -67,7 +87,6 @@
     </select>
   </div>
   <div class="products" id="productGrid">
-    <!-- Sample Products with reference-style images -->
     <div class="card" data-type="3-wick" data-fragrance="floral">
       <img src="https://www.bathandbodyworks.com.au/dw/image/v2/BBWN_PRD/on/demandware.static/-/Sites-master-catalog/default/dw123456/lavender_calm.jpg" alt="Lavender Calm">
       <h3>Lavender Calm</h3>
@@ -75,7 +94,6 @@
       <div class="price">$35</div>
       <a href="#" class="btn">Add to Cart</a>
     </div>
-
     <div class="card" data-type="single-wick" data-fragrance="sweet">
       <img src="https://www.bathandbodyworks.com.au/dw/image/v2/BBWN_PRD/on/demandware.static/-/Sites-master-catalog/default/dw654321/vanilla_bliss.jpg" alt="Vanilla Bliss">
       <h3>Vanilla Bliss</h3>
@@ -83,7 +101,6 @@
       <div class="price">$22</div>
       <a href="#" class="btn">Add to Cart</a>
     </div>
-
     <div class="card" data-type="3-wick" data-fragrance="fruity">
       <img src="https://www.bathandbodyworks.com.au/dw/image/v2/BBWN_PRD/on/demandware.static/-/Sites-master-catalog/default/dw789012/citrus_fresh.jpg" alt="Citrus Fresh">
       <h3>Citrus Fresh</h3>
@@ -91,7 +108,6 @@
       <div class="price">$35</div>
       <a href="#" class="btn">Add to Cart</a>
     </div>
-    <!-- Additional products can be added here -->
   </div>
 </section>
 
@@ -119,10 +135,11 @@
 </footer>
 
 <script>
+  // Filter products
   const typeFilter = document.getElementById('typeFilter');
   const fragranceFilter = document.getElementById('fragranceFilter');
   const productGrid = document.getElementById('productGrid');
-  
+
   function filterProducts() {
     const typeValue = typeFilter.value;
     const fragranceValue = fragranceFilter.value;
@@ -135,9 +152,20 @@
       card.style.display = typeMatch && fragranceMatch ? 'block' : 'none';
     });
   }
-
   typeFilter.addEventListener('change', filterProducts);
   fragranceFilter.addEventListener('change', filterProducts);
+
+  // Animated Candle Toggle
+  const flame = document.querySelector('.flame');
+  const smoke = document.querySelector('.smoke');
+  const toggleBtn = document.getElementById('toggleCandle');
+  let candleOn = true;
+  toggleBtn.addEventListener('click', () => {
+    candleOn = !candleOn;
+    flame.style.display = candleOn ? 'block' : 'none';
+    smoke.style.display = candleOn ? 'block' : 'none';
+    toggleBtn.textContent = candleOn ? 'Turn Off' : 'Turn On';
+  });
 </script>
 
 </body>
