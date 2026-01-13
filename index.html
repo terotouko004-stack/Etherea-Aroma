@@ -1,172 +1,516 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KOMAL CANDLES | Shop Scented Candles</title>
+  <title>KOMAL Candles</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&amp;family=Quicksand:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
   <style>
-    body { margin: 0; font-family: Arial, sans-serif; background-color: #faf7f2; color: #333; }
-    header { background-color: #2f2a26; color: #fff; padding: 30px 20px; text-align: center; }
-    header h1 { margin: 0; font-size: 2.5rem; letter-spacing: 2px; }
-    header p { margin-top: 10px; font-size: 1.1rem; }
-    nav { background-color: #fff; padding: 10px 0; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
-    nav a { margin: 0 15px; text-decoration: none; color: #2f2a26; font-weight: bold; }
-    .hero { padding: 60px 20px; text-align: center; background-color: #f5eee5; }
-    .hero h2 { font-size: 2rem; margin-bottom: 20px; }
-    .hero a { display: inline-block; padding: 12px 25px; background-color: #2f2a26; color: #fff; border-radius: 5px; text-decoration: none; }
-    section { max-width: 1200px; margin: auto; padding: 60px 20px; }
-    h2 { text-align: center; margin-bottom: 40px; }
-    .filters { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
-    .filters select { padding: 8px 12px; border-radius: 5px; border: 1px solid #ccc; }
-    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-    .card { background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); text-align: center; }
-    .card img { width: 100%; border-radius: 10px; }
-    .card h3 { margin: 15px 0 10px; }
-    .card p { font-size: 0.95rem; color: #666; }
-    .card .price { font-weight: bold; margin-top: 10px; color: #2f2a26; }
-    .card .btn { display: inline-block; margin-top: 15px; padding: 10px 20px; background-color: #2f2a26; color: #fff; text-decoration: none; border-radius: 5px; }
-    footer { background-color: #2f2a26; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
-    @media (max-width: 768px) { .filters { flex-direction: column; align-items: center; } }
-
-    /* Animated Candle Styles */
-    .candle-container { display: inline-block; position: relative; margin-top: 20px; }
-    .candle { width: 40px; height: 100px; background: #f5e1c1; border-radius: 5px; position: relative; }
-    .flame { width: 20px; height: 20px; background: radial-gradient(circle, #fffa70 0%, #ff6e40 60%, #ff3d00 100%); border-radius: 50%; position: absolute; top: -25px; left: 50%; transform: translateX(-50%); animation: flicker 1s infinite alternate; opacity: 1; }
-    @keyframes flicker { 0% { transform: translateX(-50%) scale(1); opacity: 1; } 50% { transform: translateX(-52%) scale(1.1); opacity: 0.8; } 100% { transform: translateX(-48%) scale(0.9); opacity: 1; } }
-    .smoke { position: absolute; top: -40px; left: 50%; width: 10px; height: 40px; background: radial-gradient(circle, rgba(200,200,200,0.6) 0%, transparent 70%); transform: translateX(-50%); border-radius: 50%; animation: smokeRise 3s infinite; }
-    @keyframes smokeRise { 0% { transform: translateX(-50%) translateY(0) scale(1); opacity: 0.7; } 50% { transform: translateX(-52%) translateY(-30px) scale(1.2); opacity: 0.5; } 100% { transform: translateX(-48%) translateY(-60px) scale(1.5); opacity: 0; } }
+    body {
+      box-sizing: border-box;
+    }
+    
+    .font-display { font-family: 'Cormorant Garamond', serif; }
+    .font-body { font-family: 'Quicksand', sans-serif; }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    
+    @keyframes floatReverse {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(-3deg); }
+    }
+    
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+    
+    @keyframes flicker {
+      0%, 100% { transform: scaleY(1) scaleX(1); opacity: 1; }
+      25% { transform: scaleY(1.1) scaleX(0.95); opacity: 0.9; }
+      50% { transform: scaleY(0.95) scaleX(1.05); opacity: 1; }
+      75% { transform: scaleY(1.05) scaleX(0.98); opacity: 0.95; }
+    }
+    
+    @keyframes gentleGlow {
+      0%, 100% { filter: blur(10px) brightness(1); }
+      50% { filter: blur(15px) brightness(1.2); }
+    }
+    
+    @keyframes cloudDrift {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100vw); }
+    }
+    
+    @keyframes sway {
+      0%, 100% { transform: rotate(-2deg); }
+      50% { transform: rotate(2deg); }
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .float { animation: float 6s ease-in-out infinite; }
+    .float-reverse { animation: floatReverse 7s ease-in-out infinite; }
+    .twinkle { animation: twinkle 3s ease-in-out infinite; }
+    .flicker { animation: flicker 0.5s ease-in-out infinite; transform-origin: bottom center; }
+    .glow { animation: gentleGlow 4s ease-in-out infinite; }
+    .cloud-drift { animation: cloudDrift 60s linear infinite; }
+    .sway { animation: sway 4s ease-in-out infinite; }
+    .fade-in-up { animation: fadeInUp 1s ease-out forwards; }
+    
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-500 { animation-delay: 0.5s; }
+    .delay-700 { animation-delay: 0.7s; }
+    .delay-1000 { animation-delay: 1s; }
+    
+    .candle-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .candle-card:hover {
+      transform: translateY(-10px) scale(1.02);
+    }
+    
+    .btn-magical {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-magical::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .btn-magical:hover::before {
+      left: 100%;
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #8B7355, #D4A574, #8B7355);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
   </style>
-</head>
-<body>
-
-<header>
-  <h1>KOMAL CANDLES</h1>
-  <p>Handcrafted Scented Candles for Every Mood</p>
-</header>
-
-<nav>
-  <a href="#shop">Shop</a>
-  <a href="#collections">Collections</a>
-  <a href="#about">About</a>
-  <a href="#contact">Contact</a>
-</nav>
-
-<div class="hero">
-  <h2>Discover Your Signature Scent</h2>
-  <a href="#shop">Shop Now</a>
-</div>
-
-<!-- Animated Candle Section -->
-<section id="animated-candle" style="text-align:center; padding:60px 20px;">
-  <h2>Magic Candle</h2>
-  <div class="candle-container">
-    <div class="candle">
-      <div class="flame"></div>
-      <div class="smoke"></div>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-body">
+  <div id="app-wrapper" class="w-full h-full overflow-auto" style="background: linear-gradient(180deg, #FDF8F3 0%, #F5EDE4 50%, #EDE4D8 100%);"><!-- Floating Elements Background -->
+   <div class="fixed inset-0 pointer-events-none overflow-hidden"><!-- Clouds -->
+    <div class="cloud-drift absolute top-10 opacity-40" style="animation-duration: 80s;">
+     <svg width="200" height="80" viewbox="0 0 200 80" fill="white"><ellipse cx="60" cy="50" rx="50" ry="25" /> <ellipse cx="100" cy="40" rx="40" ry="20" /> <ellipse cx="140" cy="50" rx="45" ry="22" />
+     </svg>
     </div>
+    <div class="cloud-drift absolute top-32 opacity-30" style="animation-duration: 100s; animation-delay: -20s;">
+     <svg width="150" height="60" viewbox="0 0 150 60" fill="white"><ellipse cx="45" cy="35" rx="35" ry="18" /> <ellipse cx="75" cy="28" rx="30" ry="15" /> <ellipse cx="105" cy="35" rx="32" ry="17" />
+     </svg>
+    </div><!-- Sparkles -->
+    <div class="twinkle absolute top-20 left-10 text-2xl" style="animation-delay: 0s;">
+     ✨
+    </div>
+    <div class="twinkle absolute top-40 right-20 text-xl" style="animation-delay: 1s;">
+     ✨
+    </div>
+    <div class="twinkle absolute top-60 left-1/4 text-lg" style="animation-delay: 2s;">
+     ✨
+    </div>
+    <div class="twinkle absolute bottom-40 right-1/3 text-2xl" style="animation-delay: 0.5s;">
+     ✨
+    </div>
+    <div class="twinkle absolute bottom-20 left-20 text-xl" style="animation-delay: 1.5s;">
+     ✨
+    </div>
+   </div><!-- Navigation -->
+   <nav class="relative z-10 px-6 py-4">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+     <div class="flex items-center gap-3">
+      <div class="relative">
+       <svg class="w-10 h-10 text-amber-600" viewbox="0 0 40 40" fill="currentColor"><ellipse cx="20" cy="32" rx="8" ry="6" fill="#D4A574" /> <rect x="14" y="12" width="12" height="20" rx="2" fill="#F5DEB3" /> <ellipse cx="20" cy="10" rx="4" ry="6" fill="#FFD700" class="flicker" /> <ellipse cx="20" cy="8" rx="2" ry="4" fill="#FF8C00" class="flicker" />
+       </svg>
+       <div class="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-8 bg-amber-300 rounded-full glow opacity-50"></div>
+      </div><span id="nav-brand" class="font-display text-2xl font-bold text-amber-900">KOMAL</span>
+     </div>
+     <div class="hidden md:flex items-center gap-8"><a href="#home" class="text-amber-800 hover:text-amber-600 transition-colors">Home</a> <a href="#shop" class="text-amber-800 hover:text-amber-600 transition-colors">Shop</a> <a href="#about" class="text-amber-800 hover:text-amber-600 transition-colors">About</a> <a href="#contact" class="text-amber-800 hover:text-amber-600 transition-colors">Contact</a>
+     </div><button class="btn-magical px-6 py-2 bg-amber-700 text-white rounded-full hover:bg-amber-600 shadow-lg"> 🛒 Cart </button>
+    </div>
+   </nav><!-- Hero Section -->
+   <section id="home" class="relative z-10 px-6 py-16 md:py-24">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+     <div class="fade-in-up">
+      <p id="hero-tagline" class="text-amber-600 font-medium mb-4 tracking-wide">✨ Handcrafted Magic for Your Home</p>
+      <h1 id="hero-title" class="font-display text-5xl md:text-7xl font-bold text-amber-900 mb-6 leading-tight">Light Up Your World</h1>
+      <p id="hero-subtitle" class="text-lg text-amber-800 mb-8 leading-relaxed">Each candle tells a story, crafted with love and infused with the gentle magic of nature. Let the soft glow transform your space into a sanctuary of peace.</p>
+      <div class="flex flex-wrap gap-4"><button class="btn-magical px-8 py-3 bg-amber-700 text-white rounded-full hover:bg-amber-600 shadow-xl text-lg font-medium"> Explore Collection </button> <button class="px-8 py-3 border-2 border-amber-700 text-amber-700 rounded-full hover:bg-amber-50 transition-colors"> Our Story </button>
+      </div>
+     </div><!-- Hero Illustration -->
+     <div class="relative flex justify-center">
+      <div class="float relative"><!-- Main Candle SVG -->
+       <svg width="280" height="360" viewbox="0 0 280 360" class="drop-shadow-2xl"><!-- Candle base/holder --> <ellipse cx="140" cy="340" rx="60" ry="15" fill="#8B7355" /> <ellipse cx="140" cy="335" rx="55" ry="12" fill="#A08060" /> <!-- Candle body --> <rect x="95" y="140" width="90" height="200" rx="10" fill="url(#candleGradient)" /> <rect x="100" y="145" width="20" height="190" rx="5" fill="rgba(255,255,255,0.2)" /> <!-- Dripping wax --> <path d="M95 150 Q85 170 90 190 Q85 210 95 220 L95 150" fill="#F5DEB3" /> <path d="M185 160 Q195 180 190 200 Q198 220 185 240 L185 160" fill="#F5DEB3" /> <!-- Wick --> <rect x="137" y="100" width="6" height="45" fill="#4A4A4A" /> <!-- Flame --> <g class="flicker" style="transform-origin: 140px 90px;">
+         <ellipse cx="140" cy="70" rx="25" ry="45" fill="url(#flameGradient)" />
+         <ellipse cx="140" cy="60" rx="15" ry="30" fill="#FFEB3B" />
+         <ellipse cx="140" cy="55" rx="8" ry="20" fill="#FFF8E1" />
+        </g> <!-- Glow effect --> <ellipse cx="140" cy="70" rx="50" ry="60" fill="url(#glowGradient)" class="glow" /> <!-- Decorative elements on candle --> <circle cx="120" cy="200" r="5" fill="#E8D5C4" /> <circle cx="160" cy="180" r="4" fill="#E8D5C4" /> <circle cx="130" cy="250" r="6" fill="#E8D5C4" /> <circle cx="155" cy="280" r="4" fill="#E8D5C4" /> <defs>
+         <lineargradient id="candleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#F5DEB3" />
+          <stop offset="50%" style="stop-color:#FFF8E1" />
+          <stop offset="100%" style="stop-color:#F5DEB3" />
+         </lineargradient>
+         <lineargradient id="flameGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+          <stop offset="0%" style="stop-color:#FF8C00" />
+          <stop offset="50%" style="stop-color:#FFD700" />
+          <stop offset="100%" style="stop-color:#FFEB3B" />
+         </lineargradient>
+         <radialgradient id="glowGradient">
+          <stop offset="0%" style="stop-color:rgba(255,215,0,0.4)" />
+          <stop offset="100%" style="stop-color:rgba(255,215,0,0)" />
+         </radialgradient>
+        </defs>
+       </svg><!-- Floating petals -->
+       <div class="absolute top-20 -left-10 text-3xl float" style="animation-delay: -2s;">
+        🌸
+       </div>
+       <div class="absolute top-40 -right-8 text-2xl float-reverse" style="animation-delay: -1s;">
+        🍃
+       </div>
+       <div class="absolute bottom-40 -left-16 text-2xl float" style="animation-delay: -3s;">
+        🌿
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Featured Products -->
+   <section id="shop" class="relative z-10 px-6 py-16 bg-white/50 backdrop-blur-sm">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-12 fade-in-up">
+      <h2 class="font-display text-4xl md:text-5xl font-bold text-amber-900 mb-4">Magical Collection</h2>
+      <p class="text-amber-700 max-w-2xl mx-auto">Each candle is hand-poured with natural soy wax and infused with enchanting fragrances</p>
+     </div>
+     <div class="grid md:grid-cols-3 gap-8"><!-- Product 1 -->
+      <div class="candle-card bg-white rounded-3xl p-6 shadow-xl fade-in-up delay-100" style="opacity: 0;">
+       <div class="relative mb-6 flex justify-center py-8 bg-gradient-to-b from-pink-50 to-white rounded-2xl">
+        <svg width="120" height="160" viewbox="0 0 120 160" class="sway"><ellipse cx="60" cy="150" rx="30" ry="8" fill="#E8B4B8" /> <rect x="35" y="50" width="50" height="100" rx="8" fill="#FFB6C1" /> <rect x="40" y="55" width="10" height="90" rx="3" fill="rgba(255,255,255,0.3)" /> <rect x="57" y="30" width="6" height="25" fill="#4A4A4A" /> <ellipse cx="60" cy="20" rx="12" ry="20" fill="#FFD700" class="flicker" /> <ellipse cx="60" cy="15" rx="6" ry="12" fill="#FFF8E1" class="flicker" />
+        </svg>
+        <div class="absolute top-4 right-4 text-2xl">
+         🌸
+        </div>
+       </div>
+       <h3 class="font-display text-2xl font-bold text-amber-900 mb-2">Cherry Blossom Dreams</h3>
+       <p class="text-amber-700 text-sm mb-4">Delicate sakura with hints of spring rain</p>
+       <div class="flex items-center justify-between"><span class="font-display text-2xl font-bold text-amber-800">$28</span> <button class="btn-magical px-5 py-2 bg-pink-400 text-white rounded-full hover:bg-pink-500 text-sm"> Add to Cart </button>
+       </div>
+      </div><!-- Product 2 -->
+      <div class="candle-card bg-white rounded-3xl p-6 shadow-xl fade-in-up delay-300" style="opacity: 0;">
+       <div class="relative mb-6 flex justify-center py-8 bg-gradient-to-b from-green-50 to-white rounded-2xl">
+        <svg width="120" height="160" viewbox="0 0 120 160" class="sway" style="animation-delay: -1s;"><ellipse cx="60" cy="150" rx="30" ry="8" fill="#7BA seventeen" /> <rect x="35" y="50" width="50" height="100" rx="8" fill="#98D8AA" /> <rect x="40" y="55" width="10" height="90" rx="3" fill="rgba(255,255,255,0.3)" /> <rect x="57" y="30" width="6" height="25" fill="#4A4A4A" /> <ellipse cx="60" cy="20" rx="12" ry="20" fill="#FFD700" class="flicker" /> <ellipse cx="60" cy="15" rx="6" ry="12" fill="#FFF8E1" class="flicker" />
+        </svg>
+        <div class="absolute top-4 right-4 text-2xl">
+         🌿
+        </div>
+       </div>
+       <h3 class="font-display text-2xl font-bold text-amber-900 mb-2">Forest Spirit</h3>
+       <p class="text-amber-700 text-sm mb-4">Cedar, moss, and morning dew</p>
+       <div class="flex items-center justify-between"><span class="font-display text-2xl font-bold text-amber-800">$32</span> <button class="btn-magical px-5 py-2 bg-green-500 text-white rounded-full hover:bg-green-600 text-sm"> Add to Cart </button>
+       </div>
+      </div><!-- Product 3 -->
+      <div class="candle-card bg-white rounded-3xl p-6 shadow-xl fade-in-up delay-500" style="opacity: 0;">
+       <div class="relative mb-6 flex justify-center py-8 bg-gradient-to-b from-purple-50 to-white rounded-2xl">
+        <svg width="120" height="160" viewbox="0 0 120 160" class="sway" style="animation-delay: -2s;"><ellipse cx="60" cy="150" rx="30" ry="8" fill="#9B7ED9" /> <rect x="35" y="50" width="50" height="100" rx="8" fill="#C3AED6" /> <rect x="40" y="55" width="10" height="90" rx="3" fill="rgba(255,255,255,0.3)" /> <rect x="57" y="30" width="6" height="25" fill="#4A4A4A" /> <ellipse cx="60" cy="20" rx="12" ry="20" fill="#FFD700" class="flicker" /> <ellipse cx="60" cy="15" rx="6" ry="12" fill="#FFF8E1" class="flicker" />
+        </svg>
+        <div class="absolute top-4 right-4 text-2xl">
+         🌙
+        </div>
+       </div>
+       <h3 class="font-display text-2xl font-bold text-amber-900 mb-2">Midnight Lavender</h3>
+       <p class="text-amber-700 text-sm mb-4">Soothing lavender under starlit skies</p>
+       <div class="flex items-center justify-between"><span class="font-display text-2xl font-bold text-amber-800">$30</span> <button class="btn-magical px-5 py-2 bg-purple-500 text-white rounded-full hover:bg-purple-600 text-sm"> Add to Cart </button>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- About Section -->
+   <section id="about" class="relative z-10 px-6 py-16">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center"><!-- Illustration -->
+     <div class="relative flex justify-center order-2 md:order-1">
+      <div class="relative">
+       <svg width="300" height="300" viewbox="0 0 300 300" class="float-reverse"><!-- Workshop scene --> <rect x="30" y="200" width="240" height="80" rx="5" fill="#8B7355" /> <rect x="30" y="195" width="240" height="10" rx="2" fill="#A08060" /> <!-- Small candles being made --> <g class="sway" style="transform-origin: 80px 180px;">
+         <rect x="65" y="150" width="30" height="50" rx="4" fill="#FFE4B5" />
+         <rect x="67" y="145" width="6" height="10" fill="#4A4A4A" />
+         <ellipse cx="70" cy="140" rx="5" ry="10" fill="#FFD700" class="flicker" />
+        </g> <g class="sway" style="transform-origin: 150px 180px; animation-delay: -1s;">
+         <rect x="135" y="160" width="30" height="40" rx="4" fill="#E6B8AF" />
+         <rect x="147" y="155" width="6" height="10" fill="#4A4A4A" />
+         <ellipse cx="150" cy="150" rx="5" ry="10" fill="#FFD700" class="flicker" />
+        </g> <g class="sway" style="transform-origin: 220px 180px; animation-delay: -2s;">
+         <rect x="205" y="155" width="30" height="45" rx="4" fill="#B8D4B8" />
+         <rect x="217" y="150" width="6" height="10" fill="#4A4A4A" />
+         <ellipse cx="220" cy="145" rx="5" ry="10" fill="#FFD700" class="flicker" />
+        </g> <!-- Decorative herbs --> <text x="50" y="130" font-size="30">
+         🌿
+        </text> <text x="240" y="130" font-size="25">
+         🌸
+        </text> <text x="180" y="100" font-size="20">
+         ✨
+        </text> <!-- Jars --> <rect x="250" y="170" width="25" height="30" rx="3" fill="rgba(255,255,255,0.5)" stroke="#ccc" /> <rect x="45" y="170" width="20" height="25" rx="3" fill="rgba(255,255,255,0.5)" stroke="#ccc" />
+       </svg>
+      </div>
+     </div>
+     <div class="order-1 md:order-2 fade-in-up">
+      <h2 id="about-title" class="font-display text-4xl md:text-5xl font-bold text-amber-900 mb-6">Our Story</h2>
+      <p id="about-text" class="text-amber-800 leading-relaxed mb-6">Born from a love of cozy evenings and the magic found in simple moments, KOMAL Candles began in a small kitchen filled with dreams. Each candle is hand-poured with intention, using 100% natural soy wax and premium fragrances inspired by the enchanting worlds of Studio Ghibli.</p>
+      <p class="text-amber-800 leading-relaxed mb-8">We believe every flame carries a story, and every scent has the power to transport you to a place of wonder and peace. Our mission is to bring that gentle magic into your home. 🕯️✨</p>
+      <div class="flex flex-wrap gap-8">
+       <div class="text-center">
+        <div class="text-3xl mb-2">
+         🌱
+        </div>
+        <p class="text-amber-700 text-sm font-medium">100% Natural</p>
+       </div>
+       <div class="text-center">
+        <div class="text-3xl mb-2">
+         🤲
+        </div>
+        <p class="text-amber-700 text-sm font-medium">Hand-Poured</p>
+       </div>
+       <div class="text-center">
+        <div class="text-3xl mb-2">
+         🐰
+        </div>
+        <p class="text-amber-700 text-sm font-medium">Cruelty Free</p>
+       </div>
+       <div class="text-center">
+        <div class="text-3xl mb-2">
+         ♻️
+        </div>
+        <p class="text-amber-700 text-sm font-medium">Eco-Friendly</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Testimonials -->
+   <section class="relative z-10 px-6 py-16 bg-amber-50/50">
+    <div class="max-w-4xl mx-auto text-center">
+     <h2 class="font-display text-4xl font-bold text-amber-900 mb-12">What Our Customers Say</h2>
+     <div class="bg-white rounded-3xl p-8 md:p-12 shadow-xl relative">
+      <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-5xl">
+       💬
+      </div>
+      <p class="text-xl text-amber-800 italic leading-relaxed mb-6">"These candles are pure magic! The Forest Spirit scent makes me feel like I'm walking through an enchanted woodland. Absolutely in love with the quality and the beautiful packaging!"</p>
+      <div class="flex items-center justify-center gap-4">
+       <div class="w-12 h-12 rounded-full bg-amber-200 flex items-center justify-center text-2xl">
+        🌸
+       </div>
+       <div class="text-left">
+        <p class="font-medium text-amber-900">Sophie H.</p>
+        <p class="text-sm text-amber-600">Verified Buyer</p>
+       </div>
+      </div>
+      <div class="flex justify-center mt-4 text-amber-400">
+       ⭐⭐⭐⭐⭐
+      </div>
+     </div>
+    </div>
+   </section><!-- Newsletter -->
+   <section id="contact" class="relative z-10 px-6 py-16">
+    <div class="max-w-2xl mx-auto text-center">
+     <div class="text-5xl mb-6">
+      💌
+     </div>
+     <h2 class="font-display text-3xl md:text-4xl font-bold text-amber-900 mb-4">Join the Magic Circle</h2>
+     <p class="text-amber-700 mb-8">Subscribe for enchanting updates, exclusive scents, and a sprinkle of magic in your inbox</p>
+     <form class="flex flex-col sm:flex-row gap-4 justify-center" onsubmit="event.preventDefault(); handleSubscribe();"><input type="email" placeholder="your@email.com" class="px-6 py-3 rounded-full border-2 border-amber-200 focus:border-amber-400 focus:outline-none w-full sm:w-80"> <button type="submit" class="btn-magical px-8 py-3 bg-amber-700 text-white rounded-full hover:bg-amber-600 shadow-lg whitespace-nowrap"> Subscribe ✨ </button>
+     </form>
+     <p id="subscribe-message" class="mt-4 text-amber-600 hidden">Thank you for subscribing! 🎉</p>
+    </div>
+   </section><!-- Footer -->
+   <footer class="relative z-10 px-6 py-12 bg-amber-900 text-amber-100">
+    <div class="max-w-6xl mx-auto">
+     <div class="grid md:grid-cols-4 gap-8 mb-8">
+      <div>
+       <div class="flex items-center gap-2 mb-4"><span class="text-2xl">🕯️</span> <span id="footer-brand" class="font-display text-2xl font-bold">KOMAL</span>
+       </div>
+       <p id="footer-tagline" class="text-amber-200 text-sm">Made with love &amp; a little magic</p>
+      </div>
+      <div>
+       <h4 class="font-medium mb-4">Shop</h4>
+       <ul class="space-y-2 text-sm text-amber-200">
+        <li><a href="#" class="hover:text-white transition-colors">All Candles</a></li>
+        <li><a href="#" class="hover:text-white transition-colors">New Arrivals</a></li>
+        <li><a href="#" class="hover:text-white transition-colors">Gift Sets</a></li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="font-medium mb-4">About</h4>
+       <ul class="space-y-2 text-sm text-amber-200">
+        <li><a href="#" class="hover:text-white transition-colors">Our Story</a></li>
+        <li><a href="#" class="hover:text-white transition-colors">Sustainability</a></li>
+        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="font-medium mb-4">Follow Us</h4>
+       <div class="flex gap-4 text-2xl"><a href="#" class="hover:scale-110 transition-transform">📷</a> <a href="#" class="hover:scale-110 transition-transform">🐦</a> <a href="#" class="hover:scale-110 transition-transform">📌</a>
+       </div>
+      </div>
+     </div>
+     <div class="border-t border-amber-700 pt-8 text-center text-amber-300 text-sm">
+      <p>© 2024 KOMAL Candles. All rights reserved. ✨</p>
+     </div>
+    </div>
+   </footer>
   </div>
-  <button id="toggleCandle" class="btn">Turn Off</button>
-</section>
+  <script>
+    const defaultConfig = {
+      brand_name: "KOMAL",
+      tagline: "Handcrafted Magic for Your Home",
+      hero_title: "Light Up Your World",
+      hero_subtitle: "Each candle tells a story, crafted with love and infused with the gentle magic of nature. Let the soft glow transform your space into a sanctuary of peace.",
+      about_title: "Our Story",
+      about_text: "Born from a love of cozy evenings and the magic found in simple moments, KOMAL Candles began in a small kitchen filled with dreams. Each candle is hand-poured with intention, using 100% natural soy wax and premium fragrances inspired by the enchanting worlds of Studio Ghibli.",
+      footer_text: "Made with love & a little magic",
+      background_color: "#FDF8F3",
+      surface_color: "#FFFFFF",
+      text_color: "#78350F",
+      primary_action_color: "#B45309",
+      secondary_action_color: "#D97706",
+      font_family: "Quicksand",
+      font_size: 16
+    };
 
-<section id="shop">
-  <h2>All Candles</h2>
-  <div class="filters">
-    <select id="typeFilter">
-      <option value="all">All Types</option>
-      <option value="3-wick">3-Wick Candles</option>
-      <option value="single-wick">Single Wick Candles</option>
-      <option value="accessory">Accessories</option>
-    </select>
-    <select id="fragranceFilter">
-      <option value="all">All Fragrances</option>
-      <option value="floral">Floral</option>
-      <option value="fresh">Fresh</option>
-      <option value="fruity">Fruity</option>
-      <option value="woody">Woody</option>
-      <option value="sweet">Sweet</option>
-    </select>
-  </div>
-  <div class="products" id="productGrid">
-    <div class="card" data-type="3-wick" data-fragrance="floral">
-      <img src="https://www.bathandbodyworks.com.au/dw/image/v2/BBWN_PRD/on/demandware.static/-/Sites-master-catalog/default/dw123456/lavender_calm.jpg" alt="Lavender Calm">
-      <h3>Lavender Calm</h3>
-      <p>Soothing lavender fragrance for relaxation and stress relief.</p>
-      <div class="price">$35</div>
-      <a href="#" class="btn">Add to Cart</a>
-    </div>
-    <div class="card" data-type="single-wick" data-fragrance="sweet">
-      <img src="https://www.bathandbodyworks.com.au/dw/image/v2/BBWN_PRD/on/demandware.static/-/Sites-master-catalog/default/dw654321/vanilla_bliss.jpg" alt="Vanilla Bliss">
-      <h3>Vanilla Bliss</h3>
-      <p>Warm and comforting vanilla aroma for everyday comfort.</p>
-      <div class="price">$22</div>
-      <a href="#" class="btn">Add to Cart</a>
-    </div>
-    <div class="card" data-type="3-wick" data-fragrance="fruity">
-      <img src="https://www.bathandbodyworks.com.au/dw/image/v2/BBWN_PRD/on/demandware.static/-/Sites-master-catalog/default/dw789012/citrus_fresh.jpg" alt="Citrus Fresh">
-      <h3>Citrus Fresh</h3>
-      <p>Energising citrus notes to brighten your mood and space.</p>
-      <div class="price">$35</div>
-      <a href="#" class="btn">Add to Cart</a>
-    </div>
-  </div>
-</section>
+    function handleSubscribe() {
+      const msg = document.getElementById('subscribe-message');
+      msg.classList.remove('hidden');
+      setTimeout(() => msg.classList.add('hidden'), 3000);
+    }
 
-<section id="collections">
-  <h2>Featured Collections</h2>
-  <p style="text-align:center;">Best Sellers | New Arrivals | Seasonal Scents | Gift Sets</p>
-</section>
+    // Trigger fade-in animations
+    setTimeout(() => {
+      document.querySelectorAll('.fade-in-up').forEach(el => {
+        el.style.opacity = '1';
+      });
+    }, 100);
 
-<section id="about">
-  <h2>About KOMAL CANDLES</h2>
-  <p style="text-align:center; max-width:800px; margin:auto;">
-    KOMAL CANDLES crafts high-quality, handcrafted scented candles made from safe and sustainable materials.
-    Each candle is carefully created to bring warmth, relaxation, and joy into your home.
-  </p>
-</section>
+    async function onConfigChange(config) {
+      const c = { ...defaultConfig, ...config };
+      
+      // Update text content
+      document.getElementById('nav-brand').textContent = c.brand_name;
+      document.getElementById('hero-tagline').textContent = `✨ ${c.tagline}`;
+      document.getElementById('hero-title').textContent = c.hero_title;
+      document.getElementById('hero-subtitle').textContent = c.hero_subtitle;
+      document.getElementById('about-title').textContent = c.about_title;
+      document.getElementById('about-text').textContent = c.about_text;
+      document.getElementById('footer-brand').textContent = c.brand_name;
+      document.getElementById('footer-tagline').textContent = c.footer_text;
+      
+      // Update colors
+      const wrapper = document.getElementById('app-wrapper');
+      wrapper.style.background = `linear-gradient(180deg, ${c.background_color} 0%, ${adjustColor(c.background_color, -5)} 50%, ${adjustColor(c.background_color, -10)} 100%)`;
+      
+      // Update font
+      const fontStack = `${c.font_family}, 'Quicksand', sans-serif`;
+      document.body.style.fontFamily = fontStack;
+      
+      // Update font size scaling
+      const baseSize = c.font_size;
+      document.querySelectorAll('p').forEach(el => {
+        el.style.fontSize = `${baseSize}px`;
+      });
+      document.querySelectorAll('h1').forEach(el => {
+        el.style.fontSize = `${baseSize * 3}px`;
+      });
+      document.querySelectorAll('h2').forEach(el => {
+        el.style.fontSize = `${baseSize * 2.5}px`;
+      });
+      document.querySelectorAll('h3').forEach(el => {
+        el.style.fontSize = `${baseSize * 1.5}px`;
+      });
+    }
+    
+    function adjustColor(hex, percent) {
+      const num = parseInt(hex.replace('#', ''), 16);
+      const amt = Math.round(2.55 * percent);
+      const R = Math.max(0, Math.min(255, (num >> 16) + amt));
+      const G = Math.max(0, Math.min(255, ((num >> 8) & 0x00FF) + amt));
+      const B = Math.max(0, Math.min(255, (num & 0x0000FF) + amt));
+      return `#${(0x1000000 + R * 0x10000 + G * 0x100 + B).toString(16).slice(1)}`;
+    }
 
-<section id="contact">
-  <h2>Contact Us</h2>
-  <p style="text-align:center;">Email: info@komalcandles.com | Instagram: @komalcandles</p>
-  <p style="text-align:center;"><a href="mailto:info@komalcandles.com" class="btn">Get in Touch</a></p>
-</section>
+    function mapToCapabilities(config) {
+      const c = { ...defaultConfig, ...config };
+      return {
+        recolorables: [
+          {
+            get: () => c.background_color,
+            set: (v) => { c.background_color = v; window.elementSdk.setConfig({ background_color: v }); }
+          },
+          {
+            get: () => c.surface_color,
+            set: (v) => { c.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); }
+          },
+          {
+            get: () => c.text_color,
+            set: (v) => { c.text_color = v; window.elementSdk.setConfig({ text_color: v }); }
+          },
+          {
+            get: () => c.primary_action_color,
+            set: (v) => { c.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); }
+          },
+          {
+            get: () => c.secondary_action_color,
+            set: (v) => { c.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => c.font_family,
+          set: (v) => { c.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+        },
+        fontSizeable: {
+          get: () => c.font_size,
+          set: (v) => { c.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+        }
+      };
+    }
 
-<footer>
-  <p>&copy; 2026 KOMAL CANDLES. All Rights Reserved.</p>
-</footer>
+    function mapToEditPanelValues(config) {
+      const c = { ...defaultConfig, ...config };
+      return new Map([
+        ["brand_name", c.brand_name],
+        ["tagline", c.tagline],
+        ["hero_title", c.hero_title],
+        ["hero_subtitle", c.hero_subtitle],
+        ["about_title", c.about_title],
+        ["about_text", c.about_text],
+        ["footer_text", c.footer_text]
+      ]);
+    }
 
-<script>
-  // Filter products
-  const typeFilter = document.getElementById('typeFilter');
-  const fragranceFilter = document.getElementById('fragranceFilter');
-  const productGrid = document.getElementById('productGrid');
-
-  function filterProducts() {
-    const typeValue = typeFilter.value;
-    const fragranceValue = fragranceFilter.value;
-    const cards = productGrid.querySelectorAll('.card');
-    cards.forEach(card => {
-      const cardType = card.getAttribute('data-type');
-      const cardFragrance = card.getAttribute('data-fragrance');
-      const typeMatch = typeValue === 'all' || cardType === typeValue;
-      const fragranceMatch = fragranceValue === 'all' || cardFragrance === fragranceValue;
-      card.style.display = typeMatch && fragranceMatch ? 'block' : 'none';
-    });
-  }
-  typeFilter.addEventListener('change', filterProducts);
-  fragranceFilter.addEventListener('change', filterProducts);
-
-  // Animated Candle Toggle
-  const flame = document.querySelector('.flame');
-  const smoke = document.querySelector('.smoke');
-  const toggleBtn = document.getElementById('toggleCandle');
-  let candleOn = true;
-  toggleBtn.addEventListener('click', () => {
-    candleOn = !candleOn;
-    flame.style.display = candleOn ? 'block' : 'none';
-    smoke.style.display = candleOn ? 'block' : 'none';
-    toggleBtn.textContent = candleOn ? 'Turn Off' : 'Turn On';
-  });
-</script>
-
-</body>
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9bd4f4f602eb2eac',t:'MTc2ODMwNzk3MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
