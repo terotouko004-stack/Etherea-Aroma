@@ -1,133 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Etherea Aroma | Luxury Scented Candles</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KOMAL CANDLES | Shop Scented Candles</title>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      color: #3b2f2f;
-      background: url('logo.png') no-repeat center center fixed;
-      background-size: cover;
-    }
-    header {
-      background: rgba(255, 248, 240, 0.85);
-      backdrop-filter: blur(6px);
-      padding: 90px 20px;
-      text-align: center;
-      color: #3b2f2f;
-    }
-    header h1 {
-      font-size: 3.2rem;
-      margin-bottom: 10px;
-      letter-spacing: 3px;
-    }
-    header p {
-      font-size: 1.2rem;
-      max-width: 650px;
-      margin: auto;
-    }
-    section {
-      max-width: 1100px;
-      margin: 70px auto;
-      padding: 30px 20px;
-      background: rgba(255, 255, 255,
-    h2 {
-      text-align: center;
-      margin-bottom: 45px;
-      font-size: 2.2rem;
-      color: #8a6a2f;
-    }
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-    }
-    .card {
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 25px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-      text-align: center;
-    }
-    .card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      border-radius: 15px;
-      margin-bottom: 15px;
-    }
-    .card h3 {
-      margin-bottom: 8px;
-      color: #5a3e1b;
-    }
-    .price {
-      font-weight: bold;
-      margin: 10px 0;
-      color: #8a6a2f;
-    }
-    .order-btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 12px 28px;
-      background: #c9a24d;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 30px;
-      font-size: 0.95rem;
-    }
-    .order-btn:hover {
-      background: #b18b3c;
-    }
-    footer {
-      background: #3b2f2f;
-      color: #fff;
-      text-align: center;
-      padding: 25px;
-      font-size: 0.9rem;
-    }
+    body { margin: 0; font-family: Arial, sans-serif; background-color: #faf7f2; color: #333; }
+    header { background-color: #2f2a26; color: #fff; padding: 30px 20px; text-align: center; }
+    header h1 { margin: 0; font-size: 2.5rem; letter-spacing: 2px; }
+    header p { margin-top: 10px; font-size: 1.1rem; }
+    nav { background-color: #fff; padding: 10px 0; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+    nav a { margin: 0 15px; text-decoration: none; color: #2f2a26; font-weight: bold; }
+    .hero { padding: 60px 20px; text-align: center; background-color: #f5eee5; }
+    .hero h2 { font-size: 2rem; margin-bottom: 20px; }
+    .hero a { display: inline-block; padding: 12px 25px; background-color: #2f2a26; color: #fff; border-radius: 5px; text-decoration: none; }
+    section { max-width: 1200px; margin: auto; padding: 60px 20px; }
+    h2 { text-align: center; margin-bottom: 40px; }
+    .filters { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
+    .filters select { padding: 8px 12px; border-radius: 5px; border: 1px solid #ccc; }
+    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .card { background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); text-align: center; }
+    .card img { width: 100%; border-radius: 10px; }
+    .card h3 { margin: 15px 0 10px; }
+    .card p { font-size: 0.95rem; color: #666; }
+    .card .price { font-weight: bold; margin-top: 10px; color: #2f2a26; }
+    .card .btn { display: inline-block; margin-top: 15px; padding: 10px 20px; background-color: #2f2a26; color: #fff; text-decoration: none; border-radius: 5px; }
+    footer { background-color: #2f2a26; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
+    @media (max-width: 768px) { .filters { flex-direction: column; align-items: center; } }
   </style>
 </head>
 <body>
 
 <header>
-  <img src="logo.png" alt="Etherea Aroma Logo" style="max-width:220px; margin-bottom:20px;" />
-  <h1>Etherea Aroma</h1>
-  <p>Luxury hand-poured scented candles designed to bring warmth, elegance, and calm into your space.</p>
+  <h1>KOMAL CANDLES</h1>
+  <p>Handcrafted Scented Candles for Every Mood</p>
 </header>
 
-<section>
-  <h2>Our Candles</h2>
-  <div class="products">
-    <div class="card">
-      <img src="candle1.png" alt="Etherea Aroma Candle">
-      <h3>Signature Candle</h3>
-      <p>Warm, calming fragrance with a soft golden glow.</p>
+<nav>
+  <a href="#shop">Shop</a>
+  <a href="#collections">Collections</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<div class="hero">
+  <h2>Discover Your Signature Scent</h2>
+  <a href="#shop">Shop Now</a>
+</div>
+
+<section id="shop">
+  <h2>All Candles</h2>
+  <div class="filters">
+    <select id="typeFilter">
+      <option value="all">All Types</option>
+      <option value="3-wick">3-Wick</option>
+      <option value="single-wick">Single Wick</option>
+    </select>
+    <select id="fragranceFilter">
+      <option value="all">All Fragrances</option>
+      <option value="floral">Floral</option>
+      <option value="fresh">Fresh</option>
+      <option value="fruity">Fruity</option>
+      <option value="woody">Woody</option>
+      <option value="sweet">Sweet</option>
+    </select>
+  </div>
+  <div class="products" id="productGrid">
+    <!-- Sample Candle Card -->
+    <div class="card" data-type="3-wick" data-fragrance="floral">
+      <img src="https://via.placeholder.com/250x250.png?text=Lavender+Calm" alt="Lavender Calm">
+      <h3>Lavender Calm</h3>
+      <p>Soothing lavender fragrance for relaxation and stress relief.</p>
       <div class="price">$25</div>
-      <a class="order-btn" href="#">Order Now</a>
+      <a href="#" class="btn">Add to Cart</a>
     </div>
-    <div class="card">
-      <img src="candle2.png" alt="Etherea Aroma Candle Set">
-      <h3>Gift Collection</h3>
-      <p>Perfectly curated candle set for gifting.</p>
-      <div class="price">$45</div>
-      <a class="order-btn" href="#">Order Now</a>
+    <div class="card" data-type="single-wick" data-fragrance="sweet">
+      <img src="https://via.placeholder.com/250x250.png?text=Vanilla+Bliss" alt="Vanilla Bliss">
+      <h3>Vanilla Bliss</h3>
+      <p>Warm and comforting vanilla aroma for everyday comfort.</p>
+      <div class="price">$20</div>
+      <a href="#" class="btn">Add to Cart</a>
     </div>
-    <div class="card">
-      <img src="candle3.png" alt="Etherea Aroma Packaging">
-      <h3>Luxury Box</h3>
-      <p>Elegant packaging with premium presentation.</p>
-      <div class="price">$30</div>
-      <a class="order-btn" href="#">Order Now</a>
+    <div class="card" data-type="3-wick" data-fragrance="fruity">
+      <img src="https://via.placeholder.com/250x250.png?text=Citrus+Fresh" alt="Citrus Fresh">
+      <h3>Citrus Fresh</h3>
+      <p>Energising citrus notes to brighten your mood and space.</p>
+      <div class="price">$25</div>
+      <a href="#" class="btn">Add to Cart</a>
     </div>
+    <!-- Add more candle cards as needed -->
   </div>
 </section>
 
+<section id="collections">
+  <h2>Featured Collections</h2>
+  <p style="text-align:center;">Best Sellers | New Arrivals | Seasonal Scents | Gift Sets</p>
+</section>
+
+<section id="about">
+  <h2>About KOMAL CANDLES</h2>
+  <p style="text-align:center; max-width:800px; margin:auto;">
+    KOMAL CANDLES crafts high-quality, handcrafted scented candles made from safe and sustainable materials.
+    Each candle is carefully created to bring warmth, relaxation, and joy into your home.
+  </p>
+</section>
+
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p style="text-align:center;">Email: info@komalcandles.com | Instagram: @komalcandles</p>
+  <p style="text-align:center;"><a href="mailto:info@komalcandles.com" class="btn">Get in Touch</a></p>
+</section>
+
 <footer>
-  <p>© 2026 Etherea Aroma | Luxury Scented Candles</p>
+  <p>&copy; 2026 KOMAL CANDLES. All Rights Reserved.</p>
 </footer>
+
+<script>
+  const typeFilter = document.getElementById('typeFilter');
+  const fragranceFilter = document.getElementById('fragranceFilter');
+  const productGrid = document.getElementById('productGrid');
+  
+  function filterProducts() {
+    const typeValue = typeFilter.value;
+    const fragranceValue = fragranceFilter.value;
+    const cards = productGrid.querySelectorAll('.card');
+    cards.forEach(card => {
+      const cardType = card.getAttribute('data-type');
+      const cardFragrance = card.getAttribute('data-fragrance');
+      const typeMatch = typeValue === 'all' || cardType === typeValue;
+      const fragranceMatch = fragranceValue === 'all' || cardFragrance === fragranceValue;
+      card.style.display = typeMatch && fragranceMatch ? 'block' : 'none';
+    });
+  }
+
+  typeFilter.addEventListener('change', filterProducts);
+  fragranceFilter.addEventListener('change', filterProducts);
+</script>
 
 </body>
 </html>
